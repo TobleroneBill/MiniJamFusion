@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0f86cjow44xr"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_tak4j"]
+[ext_resource type="Texture2D" uid="uid://cp4okn1pi5lms" path="res://Player/Player2.png" id="2_6pyec"]
+[ext_resource type="Texture2D" uid="uid://c5lfyt8i75lnp" path="res://icon.svg" id="3_jfflf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n0fcg"]
+radius = 33.0606
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_tak4j")
+Recoil = 25
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6pyec")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n0fcg")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("..")
+use_global_coordinates = false
+update_scale = false
+
+[node name="RayCast2D" type="RayCast2D" parent="RemoteTransform2D"]
+position = Vector2(18, -10)
+target_position = Vector2(25, -9)
+
+[node name="Sprite2D" type="Sprite2D" parent="RemoteTransform2D/RayCast2D"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_jfflf")
