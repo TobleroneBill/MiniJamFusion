@@ -11,8 +11,24 @@ script = ExtResource("1_kcgyu")
 position = Vector2(228, 159)
 movespeed = 15000
 
-[node name="StaticBody2D" parent="." instance=ExtResource("2_imt66")]
+[node name="Present" type="Node" parent="."]
+
+[node name="StaticBody2D" parent="Present" instance=ExtResource("2_imt66")]
+visible = false
 position = Vector2(249, 707)
+
+[node name="StaticBody2D2" parent="Present" instance=ExtResource("2_imt66")]
+visible = false
+position = Vector2(717, 601)
+rotation = -0.460767
+scale = Vector2(4, 1)
+
+[node name="Past" type="Node" parent="."]
+
+[node name="StaticBody2D2" parent="Past" instance=ExtResource("2_imt66")]
+position = Vector2(727, 699)
+rotation = 0.0229942
+scale = Vector2(4, 1)
 
 [node name="StaticBody2D3" parent="." instance=ExtResource("2_imt66")]
 position = Vector2(20, 453)
@@ -27,8 +43,3 @@ scale = Vector2(2, 1)
 [node name="StaticBody2D5" parent="." instance=ExtResource("2_imt66")]
 position = Vector2(606, -5)
 scale = Vector2(3, 1.5)
-
-[node name="StaticBody2D2" parent="." instance=ExtResource("2_imt66")]
-position = Vector2(717, 601)
-rotation = -0.460767
-scale = Vector2(4, 1)
