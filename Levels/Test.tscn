@@ -1,49 +1,80 @@
-[gd_scene load_steps=5 format=3 uid="uid://57b4syqnc5nk"]
+[gd_scene load_steps=7 format=3 uid="uid://57b4syqnc5nk"]
 
 [ext_resource type="Script" path="res://Levels/Test.gd" id="1_kcgyu"]
 [ext_resource type="PackedScene" uid="uid://b0f86cjow44xr" path="res://Player/player.tscn" id="1_ljb5v"]
 [ext_resource type="PackedScene" uid="uid://5qe50yopjxvx" path="res://LevelObjects/Wall/Wall.tscn" id="2_imt66"]
 [ext_resource type="PackedScene" uid="uid://dnvs2j4qt7mdj" path="res://Player/bullet.tscn" id="4_csukc"]
+[ext_resource type="PackedScene" uid="uid://djq68v545dy2l" path="res://LevelObjects/ZoneCamera.tscn" id="6_5ft2d"]
+
+[sub_resource type="GDScript" id="GDScript_up0gd"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_kcgyu")
 
 [node name="Player" parent="." instance=ExtResource("1_ljb5v")]
 position = Vector2(228, 159)
+collision_layer = 3
 movespeed = 15000
 
 [node name="Present" type="Node" parent="."]
 
-[node name="StaticBody2D" parent="Present" instance=ExtResource("2_imt66")]
-visible = false
-position = Vector2(249, 707)
+[node name="StaticBody2D6" parent="Present" instance=ExtResource("2_imt66")]
+position = Vector2(1291, 840)
+rotation = 1.5708
+scale = Vector2(2, 1)
 
 [node name="StaticBody2D2" parent="Present" instance=ExtResource("2_imt66")]
-visible = false
-position = Vector2(717, 601)
+position = Vector2(390, 798)
 rotation = -0.460767
 scale = Vector2(4, 1)
 
 [node name="Past" type="Node" parent="."]
 
-[node name="StaticBody2D2" parent="Past" instance=ExtResource("2_imt66")]
-position = Vector2(727, 699)
-rotation = 0.0229942
-scale = Vector2(4, 1)
+[node name="StaticBody2D7" parent="Past" instance=ExtResource("2_imt66")]
+position = Vector2(1291, 514)
+rotation = 1.5708
+scale = Vector2(2, 1)
 
 [node name="StaticBody2D3" parent="." instance=ExtResource("2_imt66")]
 position = Vector2(20, 453)
 rotation = 1.5708
 scale = Vector2(2, 1)
 
-[node name="StaticBody2D4" parent="." instance=ExtResource("2_imt66")]
-position = Vector2(1252, 499)
-rotation = 1.5708
+[node name="StaticBody2D6" parent="." instance=ExtResource("2_imt66")]
+position = Vector2(1770, 532)
+rotation = 3.47441
 scale = Vector2(2, 1)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("2_imt66")]
+position = Vector2(2384, 333)
+rotation = -0.0365782
+scale = Vector2(1.11181, 0.558832)
 
 [node name="StaticBody2D5" parent="." instance=ExtResource("2_imt66")]
 position = Vector2(606, -5)
 scale = Vector2(3, 1.5)
 
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_imt66")]
+position = Vector2(1044, 670)
+rotation = 0.0229942
+scale = Vector2(10, 1)
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("2_imt66")]
+position = Vector2(5152, 729)
+rotation = 0.0229942
+scale = Vector2(10, 1)
+
 [node name="Bullet" parent="." instance=ExtResource("4_csukc")]
 position = Vector2(371, 378)
+
+[node name="Cameras" type="Node" parent="."]
+script = SubResource("GDScript_up0gd")
+
+[node name="Camera2D" parent="Cameras" instance=ExtResource("6_5ft2d")]
+position = Vector2(640, 360)
+
+[node name="Camera2D2" parent="Cameras" instance=ExtResource("6_5ft2d")]
+position = Vector2(1920, 360)
+
+[node name="Camera2D3" parent="Cameras" instance=ExtResource("6_5ft2d")]
+position = Vector2(3041, 367)
