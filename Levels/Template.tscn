@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://2n2hw1p7cqbi"]
+
+[ext_resource type="Script" path="res://Levels/Test.gd" id="1_6heks"]
+[ext_resource type="PackedScene" uid="uid://djq68v545dy2l" path="res://LevelObjects/ZoneCamera.tscn" id="4_d60u3"]
+
+[sub_resource type="GDScript" id="GDScript_up0gd"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_6heks")
+
+[node name="Present" type="Node" parent="."]
+
+[node name="Past" type="Node" parent="."]
+
+[node name="StaticLevel" type="Node" parent="."]
+
+[node name="Cameras" type="Node" parent="."]
+script = SubResource("GDScript_up0gd")
+
+[node name="Camera2D" parent="Cameras" instance=ExtResource("4_d60u3")]
+visible = false
+position = Vector2(640, 360)
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]

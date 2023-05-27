@@ -7,8 +7,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0fcg"]
 radius = 33.0606
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D"]
+collision_layer = 3
 script = ExtResource("1_tak4j")
+movespeed = 10000
 Recoil = 25
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

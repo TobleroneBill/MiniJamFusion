@@ -32,7 +32,6 @@ func _physics_process(delta):
 		SE.play()
 		
 		
-		print('Shoots')
 	
 	# Sets the level to use its own adjustment function that changes the level dynamically
 	if Input.is_action_just_pressed("travel"):

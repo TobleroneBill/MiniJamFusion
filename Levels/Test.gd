@@ -2,48 +2,56 @@ extends Node
 
 var present = true
 
+#/__________________/OBSTACLES MUST BE 1 LAYER DEEP WITH STATICBODY2D NODES/__________________/
+
+func EnableCollision(node):
+	print('enabled: ' + node.name)
+	var animplayer = node.get_child('Fade')
+	if node is Node2D:
+		var children = node.get_children()
+		for child in children:
+			if child is StaticBody2D:
+				child.collision_layer = 1
+	if node is StaticBody2D:
+		node.collision_layer = 1
+	node.visible = true
+
+func DisableCollision(node):
+	print('disabled: ' + node.name)
+	if node is Node2D:
+		var children = node.get_children()
+		for child in children:
+			if child is StaticBody2D:
+				child.collision_layer = 0
+	if node is StaticBody2D:
+		node.collision_layer = 0
+	node.visible = false
+	
+
 func TimeTravel():
 	print("timetravel")
 	# switch to past
 	
 	
 	# this should probably go in some function	
-	if present:
+	if not present:
 		for node in $Present.get_children():
-			for child in node.get_children():
-				if child.name == "CollisionShape2D":
-					print('disabled: ' + child.name)
-					child.disabled = true
-					
-			node.visible = false
-			
+			DisableCollision(node)
 		for node in $Past.get_children():
-			for child in node.get_children():
-				if child.name == "CollisionShape2D":
-					print('enabled: ' + child.name)
-					child.disabled = false
-			node.visible = true
+			EnableCollision(node)
 	else:
-		for node in $Past.get_children():
-			node.visible = false
-			for child in node.get_children():
-				if child.name == "CollisionShape2D":
-					print('disabled: ' + child.name)
-					child.disabled = true
-			
 		for node in $Present.get_children():
-			for child in node.get_children():
-				if child.name == "CollisionShape2D":
-					print('enabled: ' + child.name)
-					child.disabled = false
-			node.visible = true
+			EnableCollision(node)
+		for node in $Past.get_children():
+			DisableCollision(node)
 			
 	present = !present
-		
-		
 
 func _ready():
+	
+	# Hide all 
 	TimeTravel()
+	pass
 
 
 func _process(delta):

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://7kaec7jtdjmg"]
+
+[ext_resource type="Texture2D" uid="uid://cevmomugahk3h" path="res://LevelObjects/Enemies/EvilCirc/Evil.png" id="1_7d4je"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5b6gf"]
+radius = 34.0
+
+[node name="AnimatableBody2D" type="AnimatableBody2D"]
+collision_layer = 0
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7d4je")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5b6gf")

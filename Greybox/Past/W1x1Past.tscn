@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv8qbpg6ltdsy"]
+
+[ext_resource type="Texture2D" uid="uid://d2blk6xxlb4m5" path="res://Greybox/PNG/1X1Past.png" id="1_w0jse"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dq3g8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsw3x"]
+size = Vector2(64, 64)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_dq3g8")
+metadata/Wall = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("1_w0jse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_dsw3x")

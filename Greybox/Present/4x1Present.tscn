@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwttymj6d80nl"]
+
+[ext_resource type="PackedScene" uid="uid://b4gkgtgyvc8yv" path="res://Greybox/Present/1x1Present.tscn" id="1_lfeyk"]
+
+[node name="4x1" type="Node2D"]
+metadata/Wall = true
+
+[node name="StaticBody2D" parent="." instance=ExtResource("1_lfeyk")]
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("1_lfeyk")]
+position = Vector2(64, 0)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("1_lfeyk")]
+position = Vector2(128, 0)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("1_lfeyk")]
+position = Vector2(192, 0)
