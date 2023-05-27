@@ -1,19 +1,18 @@
 extends Area2D
 
-@onready var label = $Label
+@onready var label = $ColorRect/Label
 @onready var animplayer = $AnimationPlayer
 
+
 @export var NPCTEXT: String = ''
+@export var TEXTURE: CompressedTexture2D
 
 # Called when the node enters the scene tree for the first tim`e.
 func _ready():
 	label.text = NPCTEXT
+	$Sprite2D.texture = TEXTURE
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 func _on_body_entered(body):

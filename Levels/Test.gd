@@ -6,14 +6,17 @@ var present = true
 
 func EnableCollision(node):
 	print('enabled: ' + node.name)
-	var animplayer = node.get_child('Fade')
 	if node is Node2D:
 		var children = node.get_children()
 		for child in children:
+			if child is AnimationPlayer:
+				if child.name == "Fade":
+					child.play("IN")
 			if child is StaticBody2D:
 				child.collision_layer = 1
 	if node is StaticBody2D:
 		node.collision_layer = 1
+
 	node.visible = true
 
 func DisableCollision(node):
@@ -21,6 +24,9 @@ func DisableCollision(node):
 	if node is Node2D:
 		var children = node.get_children()
 		for child in children:
+			if child is AnimationPlayer:
+				if child.name == "Fade":
+					child.play("OUT")
 			if child is StaticBody2D:
 				child.collision_layer = 0
 	if node is StaticBody2D:
@@ -54,8 +60,11 @@ func _ready():
 	pass
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
+
+
+
 
 

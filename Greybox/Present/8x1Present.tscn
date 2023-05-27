@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxby1a1uv8tsk"]
+[gd_scene load_steps=2 format=3 uid="uid://dupfuuqn6m8s4"]
 
 [ext_resource type="PackedScene" uid="uid://b4gkgtgyvc8yv" path="res://Greybox/Present/1x1Present.tscn" id="1_jkpqn"]
-[ext_resource type="PackedScene" uid="uid://dslc27ssrw3x7" path="res://LevelObjects/Fade.tscn" id="2_6nff5"]
 
 [node name="4x1" type="Node2D"]
 metadata/Wall = true
@@ -28,5 +27,3 @@ position = Vector2(384, 0)
 
 [node name="StaticBody2D8" parent="." instance=ExtResource("1_jkpqn")]
 position = Vector2(448, 0)
-
-[node name="Fade" parent="." instance=ExtResource("2_6nff5")]

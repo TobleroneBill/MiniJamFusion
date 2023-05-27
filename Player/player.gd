@@ -5,13 +5,15 @@ extends RigidBody2D
 @onready var transformer = $RemoteTransform2D
 @onready var SE = $AudioStreamPlayer2D
 
-@export var movespeed: int = 5000
+@export var Hud: CanvasLayer
+
+@export var movespeed: int = 10000
 @export var Recoil: int = -100
 
 var bullet = preload("res://Player/bullet.tscn")
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_pressed("left"):
 		apply_torque(-movespeed)
 		
@@ -19,7 +21,6 @@ func _physics_process(delta):
 		apply_torque(movespeed)
 	
 	if Input.is_action_just_pressed("Shoot"):
-		
 		
 		var actualPos = Vector2(raycast.global_position.x - global_position.x,raycast.global_position.y - global_position.y)
 		apply_impulse(-actualPos * Recoil,actualPos)
@@ -30,8 +31,6 @@ func _physics_process(delta):
 		
 		get_parent().add_child(spawned)
 		SE.play()
-		
-		
 	
 	# Sets the level to use its own adjustment function that changes the level dynamically
 	if Input.is_action_just_pressed("travel"):

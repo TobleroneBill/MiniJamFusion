@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctvypfd6n6jda"]
+
+[ext_resource type="PackedScene" uid="uid://c8gqopjsrnvca" path="res://Greybox/1x1.tscn" id="1_3glwu"]
+[ext_resource type="PhysicsMaterial" uid="uid://clf2dk1o21d3y" path="res://Greybox/Sliding.tres" id="2_xo56s"]
+
+[node name="8x1" type="Node2D"]
+metadata/Wall = false
+
+[node name="StaticBody2D" parent="." instance=ExtResource("1_3glwu")]
+position = Vector2(192, 0)
+physics_material_override = ExtResource("2_xo56s")
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("1_3glwu")]
+physics_material_override = ExtResource("2_xo56s")
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("1_3glwu")]
+position = Vector2(64, 0)
+physics_material_override = ExtResource("2_xo56s")
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("1_3glwu")]
+position = Vector2(128, 0)
+physics_material_override = ExtResource("2_xo56s")
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("1_3glwu")]
+position = Vector2(448, 0)
+physics_material_override = ExtResource("2_xo56s")
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("1_3glwu")]
+position = Vector2(256, 0)
+physics_material_override = ExtResource("2_xo56s")
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("1_3glwu")]
+position = Vector2(320, 0)
+physics_material_override = ExtResource("2_xo56s")
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("1_3glwu")]
+position = Vector2(384, 0)
+physics_material_override = ExtResource("2_xo56s")

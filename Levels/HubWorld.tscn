@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://nlkhhd1io8n7"]
+
+[ext_resource type="Script" path="res://Levels/Test.gd" id="1_n4j57"]
+[ext_resource type="PackedScene" uid="uid://bj3cv07xmft0x" path="res://Greybox/8x1.tscn" id="3_or36a"]
+[ext_resource type="PackedScene" uid="uid://ctvypfd6n6jda" path="res://Greybox/SlidingWall.tscn" id="3_xim6n"]
+[ext_resource type="PhysicsMaterial" uid="uid://clf2dk1o21d3y" path="res://Greybox/Sliding.tres" id="4_0pv6w"]
+[ext_resource type="PackedScene" uid="uid://b0f86cjow44xr" path="res://Player/player.tscn" id="4_5i5ta"]
+[ext_resource type="PackedScene" uid="uid://dr3ybeifeor1g" path="res://UI/Hud.tscn" id="6_p7ix3"]
+[ext_resource type="PackedScene" uid="uid://bgi5sgx84s45n" path="res://LevelObjects/trigger_volume.tscn" id="7_wbxyi"]
+[ext_resource type="Script" path="res://LevelObjects/AreaTrigger.gd" id="8_i84td"]
+[ext_resource type="PackedScene" uid="uid://dsi5m3x75y3a" path="res://LevelObjects/NPCs/Template.tscn" id="9_34vpv"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_n4j57")
+
+[node name="Present" type="Node" parent="."]
+
+[node name="Past" type="Node" parent="."]
+
+[node name="StaticLevel" type="Node" parent="."]
+
+[node name="Slide" type="Node" parent="StaticLevel"]
+
+[node name="8x1" parent="StaticLevel/Slide" instance=ExtResource("3_xim6n")]
+position = Vector2(64, 0)
+rotation = 1.5708
+
+[node name="8x2" parent="StaticLevel/Slide" instance=ExtResource("3_xim6n")]
+position = Vector2(64, 510)
+rotation = 1.5708
+
+[node name="8x8" parent="StaticLevel/Slide" instance=ExtResource("3_xim6n")]
+position = Vector2(64, 1021)
+rotation = 1.5708
+
+[node name="8x9" parent="StaticLevel/Slide" instance=ExtResource("3_xim6n")]
+position = Vector2(64, 1531)
+rotation = 1.5708
+
+[node name="8x3" parent="StaticLevel/Slide" instance=ExtResource("3_xim6n")]
+position = Vector2(-73, 1546)
+rotation = 1.309
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="StaticLevel/Slide/8x3"]
+physics_material_override = ExtResource("4_0pv6w")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticLevel/Slide/8x3/StaticBody2D9"]
+position = Vector2(-1853.69, -434.577)
+rotation = -1.309
+polygon = PackedVector2Array(199, 2397, 206, 2476, 220, 2600, 243, 2679, 279, 2738, 322, 2784, 381, 2822, 437, 2849, 522, 2871, 615, 2878, 736, 2874, 822, 2858, 1008, 2779, 753, 2970, 223, 2900, 149, 2498)
+
+[node name="Intro" type="Node" parent="StaticLevel"]
+
+[node name="8x1" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
+position = Vector2(2089, 2350)
+
+[node name="8x2" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
+position = Vector2(1577, 2350)
+
+[node name="8x3" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
+position = Vector2(3113, 2350)
+
+[node name="8x4" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
+position = Vector2(2601, 2350)
+
+[node name="Area2D" parent="StaticLevel/Intro" instance=ExtResource("7_wbxyi")]
+visible = false
+position = Vector2(2673, 2292)
+scale = Vector2(27.9298, 9.78146)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("8_i84td")
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("4_5i5ta")]
+position = Vector2(142, 127)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+visible = false
+offset = Vector2(0, -200)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6_p7ix3")]
+
+[node name="NPC" parent="." instance=ExtResource("9_34vpv")]
+position = Vector2(3205, 2323)
+NPCTEXT = "YOU MUST CLEAN THESE STREETS"
+
+[connection signal="body_entered" from="StaticLevel/Intro/Area2D" to="StaticLevel/Intro/Area2D" method="_on_body_entered"]
+
+[editable path="CanvasLayer"]

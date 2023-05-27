@@ -19,5 +19,4 @@ script = SubResource("GDScript_tg24r")
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_cl4j3")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
