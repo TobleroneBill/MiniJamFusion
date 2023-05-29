@@ -1,21 +1,155 @@
-[gd_scene load_steps=10 format=3 uid="uid://nlkhhd1io8n7"]
+[gd_scene load_steps=20 format=3 uid="uid://nlkhhd1io8n7"]
 
 [ext_resource type="Script" path="res://Levels/Test.gd" id="1_n4j57"]
+[ext_resource type="Script" path="res://LevelObjects/trigger_volume.gd" id="3_ip1lj"]
 [ext_resource type="PackedScene" uid="uid://bj3cv07xmft0x" path="res://Greybox/8x1.tscn" id="3_or36a"]
 [ext_resource type="PackedScene" uid="uid://ctvypfd6n6jda" path="res://Greybox/SlidingWall.tscn" id="3_xim6n"]
 [ext_resource type="PhysicsMaterial" uid="uid://clf2dk1o21d3y" path="res://Greybox/Sliding.tres" id="4_0pv6w"]
 [ext_resource type="PackedScene" uid="uid://b0f86cjow44xr" path="res://Player/player.tscn" id="4_5i5ta"]
+[ext_resource type="PackedScene" uid="uid://dwttymj6d80nl" path="res://Greybox/Present/4x1Present.tscn" id="4_q6f70"]
+[ext_resource type="PackedScene" uid="uid://dksdgkb1r7ucq" path="res://Greybox/Past/W4x1Past.tscn" id="5_jhxbj"]
 [ext_resource type="PackedScene" uid="uid://dr3ybeifeor1g" path="res://UI/Hud.tscn" id="6_p7ix3"]
+[ext_resource type="PackedScene" uid="uid://dslc27ssrw3x7" path="res://LevelObjects/Fade.tscn" id="7_qxjg5"]
 [ext_resource type="PackedScene" uid="uid://bgi5sgx84s45n" path="res://LevelObjects/trigger_volume.tscn" id="7_wbxyi"]
 [ext_resource type="Script" path="res://LevelObjects/AreaTrigger.gd" id="8_i84td"]
+[ext_resource type="PackedScene" uid="uid://ci3hw7hf2f84i" path="res://Greybox/4x1.tscn" id="9_1je6n"]
 [ext_resource type="PackedScene" uid="uid://dsi5m3x75y3a" path="res://LevelObjects/NPCs/Template.tscn" id="9_34vpv"]
+[ext_resource type="Texture2D" uid="uid://cjp17l316vnm7" path="res://NPCs/IntroMan.png" id="10_c1usf"]
+[ext_resource type="PackedScene" uid="uid://dodm5baaa053n" path="res://LevelObjects/music_player.tscn" id="11_0w5ee"]
+[ext_resource type="Texture2D" uid="uid://c5lfyt8i75lnp" path="res://icon.svg" id="13_ia0cw"]
+[ext_resource type="PackedScene" uid="uid://k5evhrubedal" path="res://note.tscn" id="14_4ksjy"]
+[ext_resource type="PackedScene" uid="uid://c8gqopjsrnvca" path="res://Greybox/1x1.tscn" id="19_tthpi"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_n4j57")
 
 [node name="Present" type="Node" parent="."]
 
+[node name="Ramp" parent="Present" instance=ExtResource("3_xim6n")]
+position = Vector2(-73, 1546)
+rotation = 1.309
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="Present/Ramp"]
+physics_material_override = ExtResource("4_0pv6w")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Present/Ramp/StaticBody2D9"]
+position = Vector2(-1853.69, -434.577)
+rotation = -1.309
+polygon = PackedVector2Array(199, 2397, 206, 2476, 220, 2600, 243, 2679, 279, 2738, 322, 2784, 381, 2822, 437, 2849, 522, 2871, 615, 2878, 736, 2874, 822, 2858, 1008, 2779, 753, 2970, 223, 2900, 149, 2498)
+
+[node name="Spike1" parent="Present" instance=ExtResource("4_q6f70")]
+position = Vector2(4532, 1853)
+
+[node name="SecretPath" parent="Present" instance=ExtResource("4_q6f70")]
+position = Vector2(1915, 2350)
+
+[node name="New Floor" parent="Present" instance=ExtResource("4_q6f70")]
+position = Vector2(4100, 2555)
+scale = Vector2(3.08, 1)
+
+[node name="Spike2" parent="Present" instance=ExtResource("4_q6f70")]
+position = Vector2(5551, 1853)
+
+[node name="SlideDoorAccess" parent="Present" instance=ExtResource("4_q6f70")]
+position = Vector2(7912, 2057)
+
+[node name="BotPressure" parent="Present" instance=ExtResource("4_q6f70")]
+position = Vector2(7078, 2780)
+scale = Vector2(0.48, 1)
+
+[node name="BotPressure2" parent="Present" instance=ExtResource("4_q6f70")]
+position = Vector2(7560, 2780)
+scale = Vector2(0.48, 1)
+
+[node name="Spike3" parent="Present" instance=ExtResource("4_q6f70")]
+position = Vector2(6129, 2043)
+
+[node name="Barricade" parent="Present" instance=ExtResource("4_q6f70")]
+position = Vector2(6349, 2571)
+rotation = -1.20861
+scale = Vector2(1.24474, 1)
+
+[node name="Barricade2" parent="Present" instance=ExtResource("4_q6f70")]
+position = Vector2(5585, 2594)
+rotation = -1.58369
+scale = Vector2(0.546219, 1.00226)
+
+[node name="NPC2" parent="Present" instance=ExtResource("9_34vpv")]
+position = Vector2(4914, 1812)
+NPCTEXT = "I need to cross..."
+TEXTURE = ExtResource("10_c1usf")
+
+[node name="Fade" parent="Present/NPC2" instance=ExtResource("7_qxjg5")]
+
+[node name="NPCrobothall" parent="Present" instance=ExtResource("9_34vpv")]
+position = Vector2(4995, 2521)
+NPCTEXT = "My friend never came back :("
+TEXTURE = ExtResource("10_c1usf")
+
+[node name="Fade" parent="Present/NPCrobothall" instance=ExtResource("7_qxjg5")]
+
+[node name="NPCPRessurePuzzle" parent="Present" instance=ExtResource("9_34vpv")]
+position = Vector2(6883, 2517)
+NPCTEXT = "My friend never came back :("
+TEXTURE = ExtResource("10_c1usf")
+
+[node name="Fade" parent="Present/NPCPRessurePuzzle" instance=ExtResource("7_qxjg5")]
+
+[node name="NPC" parent="Present" instance=ExtResource("9_34vpv")]
+position = Vector2(3205, 2323)
+NPCTEXT = "YOU MUST CLEAN THESE STREETS"
+TEXTURE = ExtResource("10_c1usf")
+
+[node name="Fade" parent="Present/NPC" instance=ExtResource("7_qxjg5")]
+
 [node name="Past" type="Node" parent="."]
+
+[node name="Spike1" parent="Past" instance=ExtResource("5_jhxbj")]
+position = Vector2(5043, 1853)
+
+[node name="Pressure Plate" parent="Past" instance=ExtResource("5_jhxbj")]
+position = Vector2(7290, 2215)
+scale = Vector2(0.64, 1)
+
+[node name="Pressure Plate2" parent="Past" instance=ExtResource("5_jhxbj")]
+position = Vector2(9396, 2811)
+
+[node name="Spike2" parent="Past" instance=ExtResource("5_jhxbj")]
+position = Vector2(5807, 1853)
+
+[node name="Gollum" parent="Past" instance=ExtResource("9_34vpv")]
+position = Vector2(2703, 2734)
+NPCTEXT = "WHATS IN HIS POCKETSES"
+TEXTURE = ExtResource("10_c1usf")
+
+[node name="Fade" parent="Past/Gollum" instance=ExtResource("7_qxjg5")]
+
+[node name="Target" parent="Past" instance=ExtResource("14_4ksjy")]
+offset_left = 2584.0
+offset_top = 2631.0
+offset_right = 2634.0
+offset_bottom = 2657.0
+text = "Target"
+
+[node name="Target2" parent="Past" instance=ExtResource("14_4ksjy")]
+offset_left = 8074.0
+offset_top = 2686.0
+offset_right = 8124.0
+offset_bottom = 2712.0
+text = "Target"
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="Past"]
+position = Vector2(10082, 2111)
+rotation = 1.309
+collision_layer = 2
+collision_mask = 2
+physics_material_override = ExtResource("4_0pv6w")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Past/StaticBody2D9"]
+position = Vector2(-2093.61, -373.58)
+rotation = -1.309
+scale = Vector2(1.00386, 1)
+polygon = PackedVector2Array(199, 2397, 206, 2476, 220, 2600, 243, 2679, 280, 2747, 322, 2784, 381, 2822, 437, 2849, 522, 2871, 615, 2878, 736, 2874, 822, 2858, 1008, 2779, 753, 2970, 223, 2900, 149, 2498)
 
 [node name="StaticLevel" type="Node" parent="."]
 
@@ -37,17 +171,33 @@ rotation = 1.5708
 position = Vector2(64, 1531)
 rotation = 1.5708
 
-[node name="8x3" parent="StaticLevel/Slide" instance=ExtResource("3_xim6n")]
-position = Vector2(-73, 1546)
-rotation = 1.309
+[node name="RespawnTrigger" parent="StaticLevel/Slide" instance=ExtResource("7_wbxyi")]
+position = Vector2(1198, 2720)
+rotation = -0.15612
+scale = Vector2(76.2925, -22.4956)
+script = ExtResource("3_ip1lj")
 
-[node name="StaticBody2D9" type="StaticBody2D" parent="StaticLevel/Slide/8x3"]
-physics_material_override = ExtResource("4_0pv6w")
+[node name="RespawnTrigger3" parent="StaticLevel/Slide" instance=ExtResource("7_wbxyi")]
+position = Vector2(5246, 2135)
+scale = Vector2(82.0925, -10.8156)
+script = ExtResource("3_ip1lj")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticLevel/Slide/8x3/StaticBody2D9"]
-position = Vector2(-1853.69, -434.577)
-rotation = -1.309
-polygon = PackedVector2Array(199, 2397, 206, 2476, 220, 2600, 243, 2679, 279, 2738, 322, 2784, 381, 2822, 437, 2849, 522, 2871, 615, 2878, 736, 2874, 822, 2858, 1008, 2779, 753, 2970, 223, 2900, 149, 2498)
+[node name="RespawnTrigger5" parent="StaticLevel/Slide" instance=ExtResource("7_wbxyi")]
+position = Vector2(4402, 2097)
+rotation = 0.81302
+scale = Vector2(15.9349, -8.79624)
+script = ExtResource("3_ip1lj")
+
+[node name="RespawnTrigger4" parent="StaticLevel/Slide" instance=ExtResource("7_wbxyi")]
+position = Vector2(6409, 2200)
+scale = Vector2(76.2925, -9.1756)
+script = ExtResource("3_ip1lj")
+
+[node name="RespawnTrigger2" parent="StaticLevel/Slide" instance=ExtResource("7_wbxyi")]
+position = Vector2(10.0001, 2636)
+rotation = 0.652626
+scale = Vector2(76.2925, -22.4956)
+script = ExtResource("3_ip1lj")
 
 [node name="Intro" type="Node" parent="StaticLevel"]
 
@@ -56,27 +206,389 @@ position = Vector2(2089, 2350)
 
 [node name="8x2" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
 position = Vector2(1577, 2350)
+scale = Vector2(0.705092, 1)
+
+[node name="8x7" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
+position = Vector2(1940, 2406)
+rotation = 1.309
+scale = Vector2(0.705092, 1)
+
+[node name="8x8" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
+position = Vector2(2011, 2747)
+scale = Vector2(0.705092, 1)
+
+[node name="8x9" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
+position = Vector2(2372, 2747)
+scale = Vector2(0.705092, 1)
+
+[node name="8x10" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
+position = Vector2(2729, 2747)
+rotation = -1.309
+scale = Vector2(0.705092, 1)
 
 [node name="8x3" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
 position = Vector2(3113, 2350)
 
 [node name="8x4" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
-position = Vector2(2601, 2350)
+position = Vector2(3113, 2350)
 
-[node name="Area2D" parent="StaticLevel/Intro" instance=ExtResource("7_wbxyi")]
-visible = false
+[node name="8x6" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
+position = Vector2(3620, 2354)
+rotation = 0.398782
+
+[node name="8x5" parent="StaticLevel/Intro" instance=ExtResource("3_or36a")]
+position = Vector2(3712, 2062)
+rotation = -0.000193477
+
+[node name="IntroText" parent="StaticLevel/Intro" instance=ExtResource("7_wbxyi")]
 position = Vector2(2673, 2292)
-scale = Vector2(27.9298, 9.78146)
+scale = Vector2(26.712, 8.95132)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("8_i84td")
+
+[node name="Note4" parent="StaticLevel/Intro" instance=ExtResource("14_4ksjy")]
+offset_left = 2087.0
+offset_top = 2461.0
+offset_right = 2354.0
+offset_bottom = 2591.0
+text = "Secret Room:
+in present this contains lots of destructables for easy +1 cleans
+In past this area has a target and gollum NPC
+"
+
+[node name="TopPath" type="Node" parent="StaticLevel"]
+
+[node name="PressurePlate" type="Node" parent="StaticLevel/TopPath"]
+
+[node name="4x7" parent="StaticLevel/TopPath/PressurePlate" instance=ExtResource("9_1je6n")]
+position = Vector2(6632, 1977)
+
+[node name="4x10" parent="StaticLevel/TopPath/PressurePlate" instance=ExtResource("9_1je6n")]
+position = Vector2(8168, 2313)
+rotation = -1.57079
+
+[node name="ActivatedDoor" parent="StaticLevel/TopPath/PressurePlate" instance=ExtResource("9_1je6n")]
+position = Vector2(8171, 2064)
+rotation = -1.57079
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticLevel/TopPath/PressurePlate/ActivatedDoor"]
+position = Vector2(117, 31.9995)
+texture = ExtResource("13_ia0cw")
+
+[node name="4x8" parent="StaticLevel/TopPath/PressurePlate" instance=ExtResource("9_1je6n")]
+position = Vector2(6888, 2041)
+
+[node name="4x9" parent="StaticLevel/TopPath/PressurePlate" instance=ExtResource("9_1je6n")]
+position = Vector2(7145, 2297)
+rotation = -1.57079
+
+[node name="8x4" parent="StaticLevel/TopPath/PressurePlate" instance=ExtResource("3_or36a")]
+position = Vector2(7144, 2249)
+
+[node name="8x5" parent="StaticLevel/TopPath/PressurePlate" instance=ExtResource("3_or36a")]
+position = Vector2(7656, 2249)
+
+[node name="8x6" parent="StaticLevel/TopPath/PressurePlate" instance=ExtResource("3_or36a")]
+position = Vector2(7656, 2249)
+
+[node name="Note3" parent="StaticLevel/TopPath/PressurePlate" instance=ExtResource("14_4ksjy")]
+offset_left = 3762.0
+offset_top = 2260.0
+offset_right = 4029.0
+offset_bottom = 2390.0
+text = "Bottom Path Contains:
+- Massage
+- Pressure plate puzzle Future only
+- Killable robots (they can kill you)
+
+"
+
+[node name="Note2" parent="StaticLevel/TopPath/PressurePlate" instance=ExtResource("14_4ksjy")]
+offset_left = 7477.0
+offset_top = 1880.0
+offset_right = 8077.0
+offset_bottom = 2010.0
+text = "Pressure plate puzzle + 15:
+In past you do the physics puzzle
+In the future you can see the pressure plate stuck in either position (on or off)
+Past is easier to navigate, but present lets you through the door
+
+"
+
+[node name="SpikePit" type="Node" parent="StaticLevel/TopPath"]
+
+[node name="8x4" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("3_or36a")]
+position = Vector2(2601, 2350)
+
+[node name="Note" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("14_4ksjy")]
+offset_left = 3705.0
+offset_top = 1774.0
+offset_right = 4099.0
+offset_bottom = 1852.0
+text = "Top Path Contains:
+- Back in time char to kill
+- Pressure plate puzzle in past opens door in future
+"
+
+[node name="Note2" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("14_4ksjy")]
+offset_left = 4634.0
+offset_top = 1676.0
+offset_right = 4701.0
+offset_bottom = 1702.0
+text = "Spike pit"
+
+[node name="Target2" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("14_4ksjy")]
+offset_left = 5743.0
+offset_top = 1503.0
+offset_right = 5810.0
+offset_bottom = 1529.0
+text = "Target"
+
+[node name="4x1" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("9_1je6n")]
+position = Vector2(4224, 2062)
+rotation = -1.57079
+
+[node name="4x7" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("9_1je6n")]
+position = Vector2(4267, 2075)
+rotation = 0.785397
+
+[node name="4x8" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("9_1je6n")]
+position = Vector2(4405, 2237)
+scale = Vector2(10.9, 1)
+
+[node name="4x2" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("9_1je6n")]
+position = Vector2(4288, 1806)
+rotation = 0.185387
+
+[node name="4x3" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("9_1je6n")]
+position = Vector2(4787, 1852)
+
+[node name="4x4" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("9_1je6n")]
+position = Vector2(5299, 1853)
+
+[node name="4x5" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("9_1je6n")]
+position = Vector2(6129, 1853)
+rotation = 1.57079
+
+[node name="4x6" parent="StaticLevel/TopPath/SpikePit" instance=ExtResource("9_1je6n")]
+position = Vector2(6385, 2043)
+rotation = -0.261799
+
+[node name="MidPath" type="Node" parent="StaticLevel"]
+
+[node name="KillHallway" type="Node" parent="StaticLevel/MidPath"]
+
+[node name="8x7" parent="StaticLevel/MidPath/KillHallway" instance=ExtResource("3_or36a")]
+position = Vector2(4099, 2553)
+rotation = 1.309
+
+[node name="8x9" parent="StaticLevel/MidPath/KillHallway" instance=ExtResource("3_or36a")]
+position = Vector2(4947, 2555)
+rotation = 1.57079
+
+[node name="8x8" parent="StaticLevel/MidPath/KillHallway" instance=ExtResource("3_or36a")]
+position = Vector2(4171, 2989)
+scale = Vector2(1.44001, 1)
+
+[node name="8x11" parent="StaticLevel/MidPath/KillHallway" instance=ExtResource("3_or36a")]
+position = Vector2(4947, 2555)
+scale = Vector2(3.76972, 1)
+
+[node name="BounceFloor" parent="StaticLevel/MidPath/KillHallway" instance=ExtResource("14_4ksjy")]
+offset_left = 4459.0
+offset_top = 2818.0
+offset_right = 4685.0
+offset_bottom = 2870.0
+text = "Bouncy Floor in past
+Present has garbage to shoot"
+
+[node name="Note2" parent="StaticLevel/MidPath/KillHallway" instance=ExtResource("14_4ksjy")]
+offset_left = 5362.0
+offset_top = 2371.0
+offset_right = 5726.0
+offset_bottom = 2449.0
+text = "Bot Hallway
+can skip in past, but get no clean points
+env storytell with signs saying killer bots ahead"
+
+[node name="PressurePlate2" type="Node" parent="StaticLevel/MidPath"]
+
+[node name="Note4" parent="StaticLevel/MidPath/PressurePlate2" instance=ExtResource("14_4ksjy")]
+offset_left = 7258.0
+offset_top = 2369.0
+offset_right = 7934.0
+offset_bottom = 2456.0
+text = "Pressure plate puzzle + 15:
+Same as above but in past some locks need to be shot to supply both boxes in the room"
+
+[node name="4x11" parent="StaticLevel/MidPath/PressurePlate2" instance=ExtResource("9_1je6n")]
+position = Vector2(8168, 2818)
+rotation = -1.57079
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticLevel/MidPath/PressurePlate2/4x11"]
+position = Vector2(127, 35)
+texture = ExtResource("13_ia0cw")
+
+[node name="4x12" parent="StaticLevel/MidPath/PressurePlate2" instance=ExtResource("9_1je6n")]
+position = Vector2(8168, 2567)
+rotation = -1.57079
+
+[node name="4x16" parent="StaticLevel/MidPath/PressurePlate2" instance=ExtResource("9_1je6n")]
+position = Vector2(6877, 2811)
+rotation = -1.57079
+
+[node name="4x13" parent="StaticLevel/MidPath/PressurePlate2" instance=ExtResource("9_1je6n")]
+position = Vector2(8232, 2870)
+rotation = -3.14159
+
+[node name="4x14" parent="StaticLevel/MidPath/PressurePlate2" instance=ExtResource("9_1je6n")]
+position = Vector2(7974, 2870)
+rotation = -3.14159
+
+[node name="4x15" parent="StaticLevel/MidPath/PressurePlate2" instance=ExtResource("9_1je6n")]
+position = Vector2(7720, 2870)
+rotation = -3.14159
+scale = Vector2(3.32402, 0.989728)
+
+[node name="Note3" parent="StaticLevel/MidPath" instance=ExtResource("14_4ksjy")]
+offset_left = 8155.0
+offset_top = 2957.0
+offset_right = 9132.0
+offset_bottom = 3061.0
+text = "Sewer man:
+Wants massage in past - if you roll around on him, he will spawn little garbage balls in the future which can be killed for points.
+Once all balls are spawned he will die of relaxation +15 pts
+body can be killed for +5"
+
+[node name="Indestructoman" type="Node" parent="StaticLevel"]
+
+[node name="Indestructoman" parent="StaticLevel/Indestructoman" instance=ExtResource("9_34vpv")]
+position = Vector2(9172, 2266)
+rotation = 0.000862159
+NPCTEXT = "You cannot kill me and I am evil! hahaha!"
+TEXTURE = ExtResource("10_c1usf")
+
+[node name="Note3" parent="StaticLevel/Indestructoman" instance=ExtResource("14_4ksjy")]
+offset_left = 8845.0
+offset_top = 1966.0
+offset_right = 9445.0
+offset_bottom = 2096.0
+text = "Indestructoman +10:
+paths predictably, and on contact launches player around room (boxed in)
+You must shoot him in the past where he is a baby.
+In the future he is a dead body but not as a baby (indestructoman killed)
+
+"
+
+[node name="8x13" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(10052, 2184)
+rotation = -2.36461
+scale = Vector2(1.07042, 1.02605)
+
+[node name="8x15" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(10100, 2920)
+rotation = -1.57079
+scale = Vector2(1.53782, -1.89061)
+
+[node name="8x8" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(8673, 2313)
+rotation = -0.00239003
+
+[node name="8x14" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(8229, 2811)
+scale = Vector2(2.28001, 1)
+
+[node name="8x9" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(8168, 1747)
+rotation = -0.00239003
+
+[node name="8x10" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(8678, 1747)
+rotation = -0.00239003
+
+[node name="8x11" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(9190, 1747)
+
+[node name="8x12" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(8197, 1247)
+
+[node name="8x16" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(8709, 1247)
+
+[node name="8x22" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(9221, 1247)
+
+[node name="8x23" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(9733, 1247)
+
+[node name="8x24" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(10245, 1247)
+rotation = 0.523598
+
+[node name="8x25" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(11167, 1495)
+rotation = 1.16088
+scale = Vector2(2.78735, 1)
+
+[node name="8x26" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(10655, 1495)
+
+[node name="8x27" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(10909, 2777)
+scale = Vector2(1.60002, 1)
+
+[node name="8x17" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(3064, 1247)
+scale = Vector2(2, 1)
+
+[node name="8x18" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(4088, 1247)
+scale = Vector2(2, 1)
+
+[node name="8x19" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(5112, 1249)
+scale = Vector2(2, 1)
+
+[node name="8x20" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(6129, 1247)
+scale = Vector2(2.01956, 1)
+
+[node name="8x21" parent="StaticLevel/Indestructoman" instance=ExtResource("3_or36a")]
+position = Vector2(7163, 1247)
+scale = Vector2(2.01956, 1)
+
+[node name="SewerMassage" type="Node" parent="StaticLevel"]
+
+[node name="8x1" parent="StaticLevel/SewerMassage" instance=ExtResource("3_or36a")]
+position = Vector2(9382, 2844)
+rotation = 2.09439
+
+[node name="8x2" parent="StaticLevel/SewerMassage" instance=ExtResource("3_or36a")]
+position = Vector2(9652, 2812)
+
+[node name="8x4" parent="StaticLevel/SewerMassage" instance=ExtResource("3_or36a")]
+position = Vector2(9083, 3220)
+scale = Vector2(1.68187, 1)
+
+[node name="8x3" parent="StaticLevel/SewerMassage" instance=ExtResource("3_or36a")]
+position = Vector2(9716, 2811)
+rotation = 1.0472
+
+[node name="StaticBody2D2" parent="StaticLevel" instance=ExtResource("19_tthpi")]
+position = Vector2(6145, 2502)
+
+[node name="StaticBody2D" parent="StaticLevel" instance=ExtResource("19_tthpi")]
+position = Vector2(5069, 2503)
 
 [node name="NPCs" type="Node" parent="."]
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("4_5i5ta")]
-position = Vector2(142, 127)
+position = Vector2(10160, 1994)
+movespeed = null
+RespawnPos = null
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 visible = false
@@ -87,10 +599,28 @@ position_smoothing_speed = 10.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("6_p7ix3")]
 
-[node name="NPC" parent="." instance=ExtResource("9_34vpv")]
-position = Vector2(3205, 2323)
-NPCTEXT = "YOU MUST CLEAN THESE STREETS"
+[node name="NewArea" parent="CanvasLayer/MainHud" index="1"]
+visible = true
 
-[connection signal="body_entered" from="StaticLevel/Intro/Area2D" to="StaticLevel/Intro/Area2D" method="_on_body_entered"]
+[node name="MusicPlayer" parent="." instance=ExtResource("11_0w5ee")]
 
+[node name="Note4" parent="." instance=ExtResource("14_4ksjy")]
+offset_left = 10984.0
+offset_top = 2518.0
+offset_right = 11584.0
+offset_bottom = 2648.0
+text = "Hitting wall at high speed:
+- "
+
+[connection signal="body_entered" from="StaticLevel/Slide/RespawnTrigger" to="." method="_on_respawn_trigger_body_entered"]
+[connection signal="body_entered" from="StaticLevel/Slide/RespawnTrigger3" to="." method="_on_respawn_trigger_body_entered"]
+[connection signal="body_entered" from="StaticLevel/Slide/RespawnTrigger5" to="." method="_on_respawn_trigger_body_entered"]
+[connection signal="body_entered" from="StaticLevel/Slide/RespawnTrigger4" to="." method="_on_respawn_trigger_body_entered"]
+[connection signal="body_entered" from="StaticLevel/Slide/RespawnTrigger2" to="." method="_on_respawn_trigger_body_entered"]
+[connection signal="body_entered" from="StaticLevel/Intro/IntroText" to="StaticLevel/Intro/IntroText" method="_on_body_entered"]
+[connection signal="body_entered" from="StaticLevel/Intro/IntroText" to="CanvasLayer/MainHud/Hud/Cleaned/ColorRect/Label2" method="_on_intro_text_body_entered"]
+[connection signal="body_entered" from="StaticLevel/Intro/IntroText" to="CanvasLayer/MainHud/NewArea" method="_on_area_2d_body_entered"]
+
+[editable path="StaticLevel/TopPath/PressurePlate/ActivatedDoor"]
+[editable path="StaticLevel/MidPath/PressurePlate2/4x11"]
 [editable path="CanvasLayer"]

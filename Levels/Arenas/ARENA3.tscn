@@ -1,0 +1,193 @@
+[gd_scene load_steps=21 format=3 uid="uid://cqmpecc4feyos"]
+
+[ext_resource type="Script" path="res://Levels/Test.gd" id="1_hqxt4"]
+[ext_resource type="PackedScene" uid="uid://dwttymj6d80nl" path="res://Greybox/Present/4x1Present.tscn" id="2_ffyyt"]
+[ext_resource type="PackedScene" uid="uid://dslc27ssrw3x7" path="res://LevelObjects/Fade.tscn" id="3_k8mpy"]
+[ext_resource type="PackedScene" uid="uid://dksdgkb1r7ucq" path="res://Greybox/Past/W4x1Past.tscn" id="4_x6exb"]
+[ext_resource type="PackedScene" uid="uid://ctvypfd6n6jda" path="res://Greybox/SlidingWall.tscn" id="5_dpwlb"]
+[ext_resource type="PhysicsMaterial" uid="uid://clf2dk1o21d3y" path="res://Greybox/Sliding.tres" id="6_lvupa"]
+[ext_resource type="Texture2D" uid="uid://r1eswkb6ya4a" path="res://Greybox/PNG/slide.png" id="7_1i151"]
+[ext_resource type="PackedScene" uid="uid://bj3cv07xmft0x" path="res://Greybox/8x1.tscn" id="8_hhxpb"]
+[ext_resource type="PackedScene" uid="uid://dsi5m3x75y3a" path="res://LevelObjects/NPCs/Template.tscn" id="10_ey8ek"]
+[ext_resource type="Texture2D" uid="uid://cjp17l316vnm7" path="res://NPCs/IntroMan.png" id="11_q30rv"]
+[ext_resource type="PackedScene" uid="uid://ca3irbk88vii" path="res://LevelObjects/Enemies/enemy_spawner.tscn" id="12_emnta"]
+[ext_resource type="Script" path="res://Levels/Arenas/Timer.gd" id="13_pae41"]
+[ext_resource type="PackedScene" uid="uid://bgi5sgx84s45n" path="res://LevelObjects/trigger_volume.tscn" id="14_m5whd"]
+[ext_resource type="Script" path="res://LevelObjects/AreaTrigger.gd" id="15_4hewv"]
+[ext_resource type="PackedScene" uid="uid://b0f86cjow44xr" path="res://Player/player.tscn" id="16_lottv"]
+[ext_resource type="Texture2D" uid="uid://b41wf7j8di8ne" path="res://Player/Pee Pee Area.png" id="16_pa5wq"]
+[ext_resource type="Script" path="res://LevelObjects/trigger_volume.gd" id="17_1h3ps"]
+[ext_resource type="Texture2D" uid="uid://cyi6ifvqub6bp" path="res://Levels/Arenas/BG2.jpg" id="18_5l5la"]
+[ext_resource type="AudioStream" uid="uid://cw2a80kjbm8tf" path="res://Music/Present.wav" id="19_w36ko"]
+
+[sub_resource type="GDScript" id="GDScript_up0gd"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_hqxt4")
+
+[node name="Present" type="Node" parent="."]
+
+[node name="4x2" parent="Present" instance=ExtResource("4_x6exb")]
+position = Vector2(2608, 1683)
+
+[node name="Fade" parent="Present/4x2" instance=ExtResource("3_k8mpy")]
+root_node = NodePath("../../4x2")
+
+[node name="4x5" parent="Present" instance=ExtResource("4_x6exb")]
+position = Vector2(2808, 1855)
+
+[node name="Fade" parent="Present/4x5" instance=ExtResource("3_k8mpy")]
+root_node = NodePath("../../4x5")
+
+[node name="4x8" parent="Present" instance=ExtResource("4_x6exb")]
+position = Vector2(1807, 2005)
+
+[node name="Fade" parent="Present/4x8" instance=ExtResource("3_k8mpy")]
+
+[node name="4x9" parent="Present" instance=ExtResource("4_x6exb")]
+position = Vector2(1999, 1855)
+
+[node name="Fade" parent="Present/4x9" instance=ExtResource("3_k8mpy")]
+
+[node name="Past" type="Node" parent="."]
+
+[node name="4x5" parent="Past" instance=ExtResource("2_ffyyt")]
+position = Vector2(1615, 1855)
+
+[node name="Fade" parent="Past/4x5" instance=ExtResource("3_k8mpy")]
+
+[node name="4x6" parent="Past" instance=ExtResource("2_ffyyt")]
+position = Vector2(1807, 1683)
+
+[node name="Fade" parent="Past/4x6" instance=ExtResource("3_k8mpy")]
+
+[node name="4x1" parent="Past" instance=ExtResource("2_ffyyt")]
+position = Vector2(2608, 2005)
+
+[node name="Fade" parent="Past/4x1" instance=ExtResource("3_k8mpy")]
+
+[node name="4x4" parent="Past" instance=ExtResource("2_ffyyt")]
+position = Vector2(2416, 1855)
+
+[node name="Fade" parent="Past/4x4" instance=ExtResource("3_k8mpy")]
+
+[node name="StaticLevel" type="Node" parent="."]
+
+[node name="Slide" type="Node" parent="StaticLevel"]
+
+[node name="Ramp" parent="StaticLevel/Slide" instance=ExtResource("5_dpwlb")]
+position = Vector2(-73, 1546)
+rotation = 1.309
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="StaticLevel/Slide/Ramp"]
+physics_material_override = ExtResource("6_lvupa")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticLevel/Slide/Ramp/StaticBody2D9"]
+position = Vector2(-1853.69, -434.577)
+rotation = -1.309
+polygon = PackedVector2Array(199, 2397, 206, 2476, 220, 2600, 243, 2679, 279, 2738, 322, 2784, 381, 2822, 437, 2849, 522, 2871, 615, 2878, 736, 2874, 822, 2858, 1008, 2779, 753, 2970, 223, 2900, 149, 2498)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticLevel/Slide/Ramp/StaticBody2D9"]
+position = Vector2(890.21, -286.505)
+rotation = -1.309
+scale = Vector2(1.74686, 1.72515)
+texture = ExtResource("7_1i151")
+
+[node name="8x1" parent="StaticLevel/Slide" instance=ExtResource("5_dpwlb")]
+position = Vector2(64, 0)
+rotation = 1.5708
+
+[node name="8x2" parent="StaticLevel/Slide" instance=ExtResource("5_dpwlb")]
+position = Vector2(64, 510)
+rotation = 1.5708
+
+[node name="8x8" parent="StaticLevel/Slide" instance=ExtResource("5_dpwlb")]
+position = Vector2(64, 1021)
+rotation = 1.5708
+
+[node name="8x9" parent="StaticLevel/Slide" instance=ExtResource("5_dpwlb")]
+position = Vector2(64, 1531)
+rotation = 1.5708
+
+[node name="8x1" parent="StaticLevel" instance=ExtResource("8_hhxpb")]
+position = Vector2(1807, 2216)
+
+[node name="8x4" parent="StaticLevel" instance=ExtResource("8_hhxpb")]
+position = Vector2(1133, 2005)
+
+[node name="8x6" parent="StaticLevel" instance=ExtResource("8_hhxpb")]
+position = Vector2(3064, 2005)
+
+[node name="8x3" parent="StaticLevel" instance=ExtResource("8_hhxpb")]
+position = Vector2(2319, 2216)
+
+[node name="8x2" parent="StaticLevel" instance=ExtResource("8_hhxpb")]
+position = Vector2(1319, 2350)
+rotation = -0.259507
+
+[node name="8x5" parent="StaticLevel" instance=ExtResource("8_hhxpb")]
+position = Vector2(2832, 2216)
+rotation = 0.261799
+
+[node name="Cameras" type="Node" parent="."]
+script = SubResource("GDScript_up0gd")
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="NPC" parent="NPCs" instance=ExtResource("10_ey8ek")]
+position = Vector2(2227, 2185)
+NPCTEXT = "You got this!"
+TEXTURE = ExtResource("11_q30rv")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="SpawnController" type="Node" parent="Enemies"]
+
+[node name="Enemy Spawner" parent="Enemies/SpawnController" node_paths=PackedStringArray("timerRef") instance=ExtResource("12_emnta")]
+position = Vector2(2736, 1393)
+timerRef = NodePath("../Timer")
+
+[node name="Enemy Spawner2" parent="Enemies/SpawnController" node_paths=PackedStringArray("timerRef") instance=ExtResource("12_emnta")]
+position = Vector2(1935, 1393)
+timerRef = NodePath("../Timer")
+
+[node name="Timer" type="Timer" parent="Enemies/SpawnController"]
+script = ExtResource("13_pae41")
+TransitionPos = Vector2(1804, 2803)
+
+[node name="IntroText" parent="." instance=ExtResource("14_m5whd")]
+position = Vector2(1567, 2237)
+rotation = -0.261799
+scale = Vector2(26.712, 8.95132)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("15_4hewv")
+
+[node name="Player" parent="." instance=ExtResource("16_lottv")]
+position = Vector2(139, -106)
+collision_mask = 3
+IntroTextTex = ExtResource("16_pa5wq")
+
+[node name="DeathBox" parent="." instance=ExtResource("14_m5whd")]
+position = Vector2(1804, 2803)
+scale = Vector2(391.518, 3.19791)
+script = ExtResource("17_1h3ps")
+
+[node name="BG" type="Sprite2D" parent="."]
+visible = false
+z_index = -10
+position = Vector2(1366, 2931)
+scale = Vector2(10, 10)
+texture = ExtResource("18_5l5la")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_w36ko")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="timeout" from="Enemies/SpawnController/Timer" to="Enemies/SpawnController/Enemy Spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="Enemies/SpawnController/Timer" to="Enemies/SpawnController/Enemy Spawner2" method="_on_timer_timeout"]
+[connection signal="body_entered" from="IntroText" to="Enemies/SpawnController/Enemy Spawner" method="_on_intro_text_body_entered"]
+[connection signal="body_entered" from="IntroText" to="Enemies/SpawnController/Enemy Spawner2" method="_on_intro_text_body_entered"]
+[connection signal="body_entered" from="IntroText" to="IntroText" method="_on_body_entered"]
+[connection signal="body_entered" from="DeathBox" to="DeathBox" method="_on_body_entered"]

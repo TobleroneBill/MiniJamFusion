@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca3irbk88vii"]
+
+[ext_resource type="Script" path="res://Enemy Spawner.gd" id="1_y5ler"]
+
+[node name="Enemy Spawner" type="Node2D"]
+script = ExtResource("1_y5ler")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 72.0
+offset_bottom = 66.0
+color = Color(1, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

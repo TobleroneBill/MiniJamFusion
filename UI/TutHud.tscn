@@ -1,46 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhl5xyc72n3at"]
+[gd_scene load_steps=2 format=3 uid="uid://bhl5xyc72n3at"]
 
-[ext_resource type="Script" path="res://UI/Area.gd" id="1_8ggj0"]
-[ext_resource type="Texture2D" uid="uid://fppc5ty34ds0" path="res://UI/Poopy Area.png" id="2_qm266"]
-[ext_resource type="AudioStream" uid="uid://brmbylvg064qr" path="res://UI/New Area #02.mp3" id="3_mdden"]
 [ext_resource type="Texture2D" uid="uid://bdl5da8wa5eu2" path="res://UI/Vignette.png" id="4_j3yha"]
-
-[sub_resource type="Animation" id="Animation_x2bm1"]
-resource_name = "Area Anim"
-length = 2.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AreaImg:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.3, 2.5, 2.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_bvmua"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AreaImg:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p4i1o"]
-_data = {
-"Area Anim": SubResource("Animation_x2bm1"),
-"RESET": SubResource("Animation_bvmua")
-}
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -49,27 +9,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="NewArea" type="Control" parent="MainHud"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("1_8ggj0")
-
-[node name="AreaImg" type="NinePatchRect" parent="MainHud/NewArea"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-texture = ExtResource("2_qm266")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainHud/NewArea"]
-libraries = {
-"": SubResource("AnimationLibrary_p4i1o")
-}
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MainHud/NewArea"]
-stream = ExtResource("3_mdden")
 
 [node name="Hud" type="Control" parent="MainHud"]
 anchors_preset = 0

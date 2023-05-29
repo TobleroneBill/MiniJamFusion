@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c00jqv1xgonuh"]
+[gd_scene load_steps=18 format=3 uid="uid://c00jqv1xgonuh"]
 
 [ext_resource type="Script" path="res://Levels/Test.gd" id="1_873hv"]
 [ext_resource type="PackedScene" uid="uid://dupfuuqn6m8s4" path="res://Greybox/Present/8x1Present.tscn" id="2_75lfu"]
@@ -12,7 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://bj3cv07xmft0x" path="res://Greybox/8x1.tscn" id="6_6efmh"]
 [ext_resource type="PackedScene" uid="uid://bfp4mui7jrrhq" path="res://Greybox/Past/W8x1Past.tscn" id="6_sf3c0"]
 [ext_resource type="PackedScene" uid="uid://c2lhfri17o3jf" path="res://LevelObjects/transition_vol.tscn" id="11_5hh1n"]
-[ext_resource type="PackedScene" uid="uid://dr3ybeifeor1g" path="res://UI/Hud.tscn" id="13_yqw63"]
+[ext_resource type="PackedScene" uid="uid://bhl5xyc72n3at" path="res://UI/TutHud.tscn" id="13_4sl0n"]
+[ext_resource type="PackedScene" uid="uid://cafaeoa3cpmc5" path="res://Levels/Arenas/ARENA1.tscn" id="13_h60fh"]
+[ext_resource type="PackedScene" uid="uid://dodm5baaa053n" path="res://LevelObjects/music_player.tscn" id="15_4d715"]
+[ext_resource type="Texture2D" uid="uid://w6b83mj6w2av" path="res://Levels/Arenas/BG.jpg" id="16_3qatw"]
 
 [sub_resource type="GDScript" id="GDScript_up0gd"]
 
@@ -223,9 +226,14 @@ scale = Vector2(1.04337, 1.04793)
 [node name="TransitionVol" parent="." instance=ExtResource("11_5hh1n")]
 position = Vector2(5322, 999)
 scale = Vector2(28.4951, -6.72132)
-Respawn = true
+Level = ExtResource("13_h60fh")
 
-[node name="CanvasLayer" parent="." instance=ExtResource("13_yqw63")]
+[node name="CanvasLayer" parent="." instance=ExtResource("13_4sl0n")]
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-autoplay = true
+[node name="MusicPlayer" parent="." instance=ExtResource("15_4d715")]
+
+[node name="BG" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(3081, 960)
+scale = Vector2(25, 25)
+texture = ExtResource("16_3qatw")
